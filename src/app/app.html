@@ -1,23 +1,21 @@
 <style>
   header{color:#DEDEE7}
   main{background-color: #704F4F;}
+  p{text-align: center; font-size: 2vw; background-color: #DEDEE7;}
 </style>
 <header>Hello, habittracker</header>
 <main class="main">
   :before
   <div>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
-    <app-habit-tile></app-habit-tile>
+    <p (click)="showAddHabitDialog=true">+</p>
+    @if(showAddHabitDialog){
+      <app-add-habit (habitAdded)="appendToHabitList($event)"></app-add-habit>
+    }
+  </div>
+  <div>
+    @for (habit of listOfHabits; track $index) {
+      <app-habit-tile [habit]="habit"></app-habit-tile>
+    }
   </div>
   :after
 </main>

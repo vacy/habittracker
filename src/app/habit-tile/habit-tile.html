@@ -9,7 +9,7 @@
 
 </style>
 <div>
-  <p>{{HABIT}}</p>
-  <p>{{DESCRIPTION}}</p>
+  <p>{{habit()?.title}}</p>
+  <p>{{habit()?.description}}</p>
   <button (click)="logDone()">Erledigt</button>
 </div>
