@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5c7fd2c (Initial commit)
 # Angular specific
 /dist/
 /out-tsc/
@@ -30,9 +26,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
-=======
-=======
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -75,5 +68,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
->>>>>>> a2b060f (init)
->>>>>>> 5c7fd2c (Initial commit)
+nohup.out
