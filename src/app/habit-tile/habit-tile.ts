@@ -10,21 +10,20 @@ import { Habit } from '../habit.class';
 export class HabitTile {
   habit = input<Habit>();
 
-  getDateNow(): number {
-    const timestamp: number = Date.now();
-    return timestamp;
-  }
   logDone(): void {
-    let timestamps: number[] = [];
-    const now: number = this.getDateNow();
-    timestamps.push(now);
+    this.habit()?.stamp();
   }
 
   log = [];
 
   constructor(){
     effect(():void => {
-      localStorage.setItem(this.habit()!.UUID, JSON.stringify(this.habit()));
+      if(this.habit()?.changed() || this.habit()?.log.changed()){
+        console.log("writing changes in habit: ", this.habit()?.title, " to localStorage...", this.habit());
+        localStorage.setItem(this.habit()!.UUID, JSON.stringify(this.habit()));
+        this.habit()?.changed.set(false);
+        this.habit()?.log.changed.set(false);
+      }
     });
   }
 }

@@ -23,7 +23,8 @@ export class App implements OnInit {
     for(let index=0; index < localStorage.length; index++ ){
       const key = localStorage.key(index);
       const item = JSON.parse(localStorage.getItem(key!)!);
-      const habit: Habit = new Habit(item.title, item.description, item.UUID);
+      item.log = Object.values(item.log).flat();
+      const habit: Habit = new Habit(item.title, item.description, item.UUID, item.log);
       list.push(habit);
     }
     return list;

@@ -20,6 +20,7 @@ export class AddHabit implements OnInit{
 
   addHabitToList(){
     this.habitAdded.emit(this.habit);
+    this.habit.changed.set(true);
   }
 
   show(toggle: boolean = false):boolean{
