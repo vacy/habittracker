@@ -1,4 +1,9 @@
-import { effect, signal } from "@angular/core";
+import { signal } from "@angular/core";
+
+export interface StreakStamp {
+  "Streak": number[];
+  "Stamp": number;
+}
 
 export class Log {
   allStreaks: number[][];
@@ -8,20 +13,23 @@ export class Log {
     this.allStreaks = allStreaks;
   }
 
+  readonly getLast = ():StreakStamp => {
+    const streak:number[] = this.allStreaks[this.allStreaks.length - 1];
+    const stamp:number = streak[streak.length - 1];
+    return { "Streak": streak, "Stamp": stamp };
+  };
+
   stamp(rule: number):void {
-    let lastStreak: number[];
-    let lastStamp: number;
+    let last: StreakStamp;
     const now: number = Date.now();
 
-    const getLast = (list:number[][]|number[]) => {return list[list.length - 1]};
-    lastStreak = getLast(this.allStreaks) as number[];
-    lastStamp = getLast(lastStreak) as number;
+    last = this.getLast();
 
-    if( ( now - lastStamp ) < rule || lastStamp === undefined ){
+    if( ( now - last["Stamp"] ) < rule || last["Stamp"] === undefined ){
       // habit rule is matched, we keep streak, thatfor attach to current streak
       // OR
       // habit is new, empty streak was added (lastStamp undefined)
-      lastStreak.push(now);
+      last["Streak"].push(now);
     } else {
       // habit rule is missed, we broke streak, thatfor attach a new streak
       this.allStreaks.push([now]);

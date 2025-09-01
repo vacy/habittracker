@@ -3,7 +3,7 @@
   main{background-color: #704F4F;}
   p{text-align: center; font-size: 2vw; background-color: #DEDEE7;}
 </style>
-<header>Hello, habittracker</header>
+<header>habittracker</header>
 <main class="main">
   :before
   <div>
@@ -13,7 +13,15 @@
     }
   </div>
   <div>
-    @for (habit of listOfHabits; track $index) {
+    <label for="filter">Filter: </label>
+    <select id="filter" [(ngModel)]="filterDue">
+      <option value="all" selected>all</option>
+      <option value="due">due</option>
+      <option value="missed">missed</option>
+    </select>
+  </div>
+  <div>
+    @for (habit of filteredHabits(); track $index) {
       <app-habit-tile [habit]="habit"></app-habit-tile>
     }
   </div>
