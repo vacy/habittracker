@@ -12,14 +12,14 @@ import { AddHabit } from "./add-habit/add-habit";
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  allHabits: Habit[] = [];
+  allHabits = signal<Habit[]>([]);
   showAddHabitDialog:boolean = false;
 
   filterDue = signal("all");
   filteredHabits = computed(():Habit[] => {
     const now: number = Date.now();
     const filteredHabits: Habit[] = [];
-    this.allHabits.forEach(habit => {
+    this.allHabits().forEach(habit => {
       const last: StreakStamp = habit.log.getLast();
       const dueBy: number = last["Stamp"] + habit.rule;
       switch(this.filterDue()){
@@ -38,12 +38,11 @@ export class App implements OnInit {
           break;
       }
     });
-
     return filteredHabits;
   });
 
   ngOnInit(): void {
-    this.allHabits.push.apply(this.allHabits, this.getHabitsFromLocalstorage());
+    this.allHabits.update(allHabits => [ ...allHabits, ...this.getHabitsFromLocalstorage() ] );
   }
 
   readonly getHabitsFromLocalstorage = ():Habit[] => {
@@ -61,7 +60,7 @@ export class App implements OnInit {
   }
 
   appendToHabitList(habit:Habit) {
-    this.allHabits.push(habit);
+    this.allHabits.update(habits => [...habits, habit]);
     this.showAddHabitDialog = false;
   }
 

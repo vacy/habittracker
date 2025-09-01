@@ -15,7 +15,7 @@ export class Log {
 
   readonly getLast = ():StreakStamp => {
     const streak:number[] = this.allStreaks[this.allStreaks.length - 1];
-    const stamp:number = streak[streak.length - 1];
+    const stamp:number = streak[streak.length - 1] ?? 0;
     return { "Streak": streak, "Stamp": stamp };
   };
 
