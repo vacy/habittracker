@@ -2,7 +2,7 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { HabitTile } from './habit-tile/habit-tile';
-import { Habit, StreakStamp } from './habit.class';
+import { Habit, StreakCheckin } from './habit.class';
 import { AddHabit } from "./add-habit/add-habit";
 
 @Component({
@@ -20,8 +20,8 @@ export class App implements OnInit {
     const now: number = Date.now();
     const filteredHabits: Habit[] = [];
     this.allHabits().forEach(habit => {
-      const last: StreakStamp = habit.log.getLast();
-      const dueBy: number = last["Stamp"] + habit.rule;
+      const last: StreakCheckin = habit.log.getLast();
+      const dueBy: number = last["Checkin"] + habit.rule;
       switch(this.filterDue()){
         case "all":
           filteredHabits.push(habit);

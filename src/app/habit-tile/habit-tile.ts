@@ -11,7 +11,7 @@ export class HabitTile {
   habit = input<Habit>();
 
   logDone(): void {
-    this.habit()?.stamp();
+    this.habit()?.checkin();
   }
 
   log = [];

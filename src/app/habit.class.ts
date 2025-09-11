@@ -1,8 +1,8 @@
 import { signal } from "@angular/core";
 
-export interface StreakStamp {
+export interface StreakCheckin {
   "Streak": number[];
-  "Stamp": number;
+  "Checkin": number;
 }
 
 export class Log {
@@ -13,22 +13,22 @@ export class Log {
     this.allStreaks = allStreaks;
   }
 
-  readonly getLast = ():StreakStamp => {
+  readonly getLast = ():StreakCheckin => {
     const streak:number[] = this.allStreaks[this.allStreaks.length - 1];
-    const stamp:number = streak[streak.length - 1] ?? 0;
-    return { "Streak": streak, "Stamp": stamp };
+    const checkin:number = streak[streak.length - 1] ?? 0;
+    return { "Streak": streak, "Checkin": checkin };
   };
 
-  stamp(rule: number):void {
-    let last: StreakStamp;
+  checkin(rule: number):void {
+    let last: StreakCheckin;
     const now: number = Date.now();
 
     last = this.getLast();
 
-    if( ( now - last["Stamp"] ) < rule || last["Stamp"] === undefined ){
+    if( ( now - last["Checkin"] ) < rule || last["Checkin"] === undefined ){
       // habit rule is matched, we keep streak, thatfor attach to current streak
       // OR
-      // habit is new, empty streak was added (lastStamp undefined)
+      // habit is new, empty streak was added (lastCheckin undefined)
       last["Streak"].push(now);
     } else {
       // habit rule is missed, we broke streak, thatfor attach a new streak
@@ -54,8 +54,8 @@ export class Habit {
   }
 
 
-  stamp(){
-    this.log.stamp(this.rule);
+  checkin(){
+    this.log.checkin(this.rule);
   }
 
   set setUUID(UUIDtoVerify:string){
