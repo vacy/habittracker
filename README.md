@@ -30,6 +30,42 @@ classDiagram
     }
 ```
 
+## Backend
+### Database
+```mermaid
+---
+title: Habit Database Entity Relationship Diagram
+---
+erDiagram
+    Habit ||..o{ Streak : has
+    Habit ||..o{ Checkin : "relates to"
+    Streak ||..o{ Checkin : has
+
+    Habit {
+      serial ID PK
+      bigint(20) lastStreak FK
+      tinytext title
+      text description
+      enum type "pro/anti habit"
+      time rule "how often it needs to be checked in to streak"
+    }
+
+    Streak {
+      serial ID PK
+      bigint(20) Habit PK,FK
+      timestamp firstCheckin FK "sorting purpose"
+      timestamp lastCheckin FK "-> ? currentCheckin - lastCheckin < rule"
+    }
+
+    Checkin {
+      serial ID PK
+      bigint(20) Habit PK,FK
+      bigint(20) Streak PK,FK
+      timestamp date
+      enum impact "positive or negative to evaluate a momentum in the habit"
+    }
+```
+
 ## Requirements
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
