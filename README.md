@@ -1,6 +1,34 @@
-habittracking - but forgiving. Can't miss a streak? revive it!
-
 # Habittracker
+habittracking - but forgiving. Can't miss a streak? revive it and build momentum!
+
+## Classes
+```mermaid
+---
+title: class diagram
+---
+classDiagram
+    Habit "1" <.. "1" Log : implements
+
+    class Habit{ 
+      %%<<Interface>>%%
+      +integer               ID
+      +string                 title
+      +string                 description
+      +Log                    log
+      +time                   rule
+      +signal~bool~     changed 
+      +checkin()
+      +setID(IDtoVerify string)
+    } 
+
+    class Log{ 
+      %%<<Service>>%%
+      +Array~number~        allStreaks
+      +signal~bool~             changed 
+      +getLast() Tuple~StreakCheckin~
+      +checkin(rule StreakCheckin as Tuple)
+    }
+```
 
 ## Requirements
 
