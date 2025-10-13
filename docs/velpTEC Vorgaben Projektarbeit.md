@@ -9,21 +9,20 @@ du eine ausführliche Präsentation der Webapp erstellen.
 
 # Aufgaben
 ## 1. Konzeption der Webapp
-- [ ] Definiere den Zweck und die Zielgruppe der Webapp.
-- [ ] Bestimme, welche Art von Webapp es sein soll (z.B. Tracking-
+- [x] Definiere den Zweck und die Zielgruppe der Webapp.
+- [x] Bestimme, welche Art von Webapp es sein soll (z.B. Tracking-
 Tool, Informationsportal).
-- [ ] Erstelle einen Papierprototyp oder nutze Tools wie Adobe XD
+- [x] Erstelle einen Papierprototyp oder nutze Tools wie Adobe XD
 oder Pencil für das Design.
-- [ ] Liste die benötigten Technologien auf.
+- [x] Liste die benötigten Technologien auf.
 ## 2. Vorstellung des Proposals
-- [ ] Dokumentiere dein Konzept schriftlich und formuliere es als E-Mail,
+- [x] Dokumentiere dein Konzept schriftlich und formuliere es als E-Mail,
 die an deinen fiktiven Projektleiter adressiert ist. Stelle sicher, dass das Konzept detailliert genug ist, um als Grundlage für die Entwicklung zu dienen.
 ## 3. Implementierung des Feedbacks
 - [ ] Erstelle ein Feedback-Dokument für dich selbst, basierend auf einer
-online Recherche zu möglichen weiteren implementierbaren features
+online Recherche zu möglichen weiteren implementierbaren Features
 - [ ] Passe das Konzept und das Design entsprechend deiner eigenen
 Einschätzungen und möglichen Verbesserungsvorschlägen an.
-
 ## 4. Implementierung der Webapp
 - [ ] Setze die geplanten Funktionen um.
 - [ ] Achte auf sauberen und strukturierten Code.

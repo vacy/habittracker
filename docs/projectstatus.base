@@ -1,0 +1,27 @@
+formulas:
+  Untitled: ""
+properties:
+  status:
+    displayName: Status
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - file.inFolder("todos")
+        - file.name != "template"
+        - status == false
+        - or:
+            - |-
+              ! file.properties["depending-on"].map(
+              file(value).properties["status"]).contains(false)
+            - note["depending-on"].isEmpty()
+    order:
+      - file.name
+    sort:
+      - property: formula.filter dependencies
+        direction: DESC
+  - type: table
+    name: todos
+    order:
+      - file.name
