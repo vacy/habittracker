@@ -1,10 +1,12 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import { BrowserRouter, Routes, Route } from "react-router"
-import { App, Test } from "./App"
 import { store } from "./app/store"
-import "./index.css"
+// import "./index.css"
+import { BrowserRouter, Routes, Route } from "react-router"
+import { App, Test } from "./App.jsx"
+import Header from "./component/Header.jsx"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const container = document.getElementById("root")
 
@@ -15,6 +17,7 @@ if (container) {
     <StrictMode>
       <Provider store={store}>
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/test" element={<Test />} />
