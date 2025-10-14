@@ -5,11 +5,10 @@ properties:
     displayName: Status
 views:
   - type: table
-    name: Table
+    name: todos
     filters:
       and:
         - file.inFolder("todos")
-        - file.name != "template"
         - status == false
         - or:
             - |-
@@ -18,10 +17,7 @@ views:
             - note["depending-on"].isEmpty()
     order:
       - file.name
+      - formula.Untitled
     sort:
       - property: formula.filter dependencies
         direction: DESC
-  - type: table
-    name: todos
-    order:
-      - file.name
