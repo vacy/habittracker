@@ -1,8 +1,8 @@
 ---
-status: false
+status: true
 depending-on:
-  - "[[Dokumentation]]"
+  - "[[todos/Dokumentation]]"
   - "[[GIT Versionsverwaltung]]"
 ---
-- [ ] [GIT Versionsverwaltung](obsidian://open?vault=docs&file=todos%2FGIT%20Versionsverwaltung)
-- [ ] [[Dokumentation]]
+- [x] [GIT Versionsverwaltung](obsidian://open?vault=docs&file=todos%2FGIT%20Versionsverwaltung)
+- [x] [[todos/Dokumentation]]
