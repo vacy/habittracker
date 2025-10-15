@@ -19,48 +19,33 @@ function Form() {
               align-items:center;
         }
         form {
-          display:flex;
-          justify-content:center;
           fieldset { 
             align-items:center;
             div {
             
-              // border-size:1px;
-              // border-style:solid;
+              border-size:1px;
+              border-style:solid;
             }
           }
         }
-          input:active{
-            transition: width 0.4s ease-in-out;
-          }
+
       `}
       </style>
       <Container>
         <form>
           <fieldset>
             <Row>
-              <legend>Enter credentials</legend>
+              <legend>Chat</legend>
             </Row>
             <Row>
-              <Col>
-                <label htmlFor="user">User:</label>
-              </Col>
-              <Col>
-                <input id="user" name="user" placeholder="mail@domain.com" />
-              </Col>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Deine Nachricht..."
+              />
             </Row>
             <Row>
-              <Col>
-                <label htmlFor="password">Passwort:</label>
-              </Col>
-              <Col>
-                <input id="password" name="password" placeholder="password" />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <input type="submit" value="Login" />
-              </Col>
+              <input type="submit" />
             </Row>
           </fieldset>
         </form>
@@ -69,7 +54,7 @@ function Form() {
   )
 }
 
-function LoginForm() {
+function Comments() {
   const [data, setData] = useState([])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
 
@@ -99,4 +84,4 @@ function LoginForm() {
   )
 }
 
-export default LoginForm
+export default Comments

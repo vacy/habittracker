@@ -6,6 +6,8 @@ import "./index.css"
 import { BrowserRouter, Routes, Route } from "react-router"
 import { App, Test } from "./App.jsx"
 import Header from "./component/Header.jsx"
+import Login from "./component/Login.jsx"
+import Comments from "./component/Comments.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const container = document.getElementById("root")
@@ -20,7 +22,8 @@ if (container) {
           <Header />
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/contact" element={<Comments />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </Provider>

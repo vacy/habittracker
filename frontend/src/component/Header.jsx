@@ -41,7 +41,7 @@ export default function Header() {
             padding:0;
             height: 5vh;
             background-color: #073642;
-            
+
             div {
               height: 100%;
               width: 100%;
