@@ -22,7 +22,7 @@ if (container) {
           <Header />
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/contact" element={<Comments />} />
+            <Route path="/chat" element={<Comments />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
