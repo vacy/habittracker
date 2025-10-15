@@ -4,5 +4,5 @@ depending-on:
   - "[[stage 2 - make backend available]]"
 ---
 - [ ] setup:
-	- [ ] mysql
+	- [x] mysql
 	- [ ] phpmyadmin

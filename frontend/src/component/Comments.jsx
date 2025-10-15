@@ -3,11 +3,96 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-function Form() {
+function Comment({ text }) {
   return (
     <>
-      <style>
-        {`
+      <div style={{ padding: "10px" }}>
+        <div>
+          <div>{text}</div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function Comments() {
+  const [data, setData] = useState([])
+  const [dataIsLoaded, setDataIsLoaded] = useState(false)
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    fetchComments()
+  }, [])
+
+  function fetchComments() {
+    fetch("http://127.0.0.1:4300/comments").then(response =>
+      response.json().then(comments => {
+        setData(comments)
+        setDataIsLoaded(true)
+      }),
+    )
+  }
+
+  const postComment = event => {
+    event.preventDefault()
+    fetch("http://127.0.0.1:4300/comments", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: message,
+      }),
+    }).then(response => console.log(response.statusText))
+    fetchComments()
+  }
+
+  if (!dataIsLoaded) {
+    return (
+      <div>
+        <h1>Please wait while comments are loading....</h1>
+      </div>
+    )
+  }
+  return (
+    <>
+      <div className="App">
+        <Container>
+          <form id="postComment" onSubmit={postComment}>
+            <fieldset>
+              <Row>
+                <legend>Chat</legend>
+              </Row>
+              <Row>
+                <ol>
+                  {data.map(comment => (
+                    <li
+                      className="item"
+                      key={comment.ID}
+                      style={{ listStyleType: "none" }}
+                    >
+                      <Comment text={comment.text} />
+                    </li>
+                  ))}
+                </ol>
+              </Row>
+              <Row>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Deine Nachricht..."
+                  onBlur={event => setMessage(event.target.value)}
+                />
+              </Row>
+              <Row>
+                <button id="submit">post</button>
+              </Row>
+            </fieldset>
+          </form>
+        </Container>
+        <style>
+          {`
         // div.App {
         //   padding-top:5px;
         // }
@@ -23,62 +108,14 @@ function Form() {
             align-items:center;
             div {
             
-              border-size:1px;
-              border-style:solid;
+              // border-size:1px;
+              // border-style:solid;
             }
           }
         }
 
       `}
-      </style>
-      <Container>
-        <form>
-          <fieldset>
-            <Row>
-              <legend>Chat</legend>
-            </Row>
-            <Row>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Deine Nachricht..."
-              />
-            </Row>
-            <Row>
-              <input type="submit" />
-            </Row>
-          </fieldset>
-        </form>
-      </Container>
-    </>
-  )
-}
-
-function Comments() {
-  const [data, setData] = useState([])
-  const [dataIsLoaded, setDataIsLoaded] = useState(false)
-
-  useEffect(() => {
-    fetch("http://localhost:4300/api/notes").then(response =>
-      response.json().then(notes => {
-        console.log(notes)
-        setData(notes)
-        setDataIsLoaded(true)
-      }),
-    )
-  }, [])
-
-  // if (!dataIsLoaded) {
-  //   return (
-  //     <div>
-  //       <h1>Please wait while meals are loading....</h1>
-  //     </div>
-  //   )
-  // }
-  return (
-    <>
-      <div className="App">
-        <Form />
+        </style>
       </div>
     </>
   )

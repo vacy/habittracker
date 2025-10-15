@@ -1,10 +1,12 @@
 import express from "express";
 import mysql from "mysql2/promise";
+import cors from "cors";
 const app = express();
 const port = 4300;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // class Customer {
 //   constructor({ ID = 0, name, email, created_at = "" }) {
@@ -29,10 +31,6 @@ class HabitManager {
     this.__query(
       "INSERT IGNORE INTO comments(ID,text) VALUES (1,'Hallo! Schöne Seite!')"
     );
-
-    this.getAllComments.then((msg) => {
-      console.log(msg[0]);
-    });
   }
 
   async __connectDatabase() {
@@ -71,7 +69,9 @@ class HabitManager {
   }
 
   get getAllComments() {
-    let response = this.__query("SELECT ID,text from comments");
+    let response = this.__query(
+      "SELECT ID,text from comments ORDER BY ID DESC LIMIT 15"
+    );
     return response;
   }
 
@@ -82,16 +82,11 @@ class HabitManager {
   //     return response;
   //   }
 
-  //   new(customer) {
-  //     let response = this.__query(
-  //       "INSERT INTO customers(name,email) VALUES ('" +
-  //         customer.name +
-  //         "','" +
-  //         customer.email +
-  //         "') RETURNING ID"
-  //     );
-  //     return response;
-  //   }
+  newComment(text) {
+    let response = this.__query(
+      "INSERT INTO comments(text) VALUES ('" + text + "')"
+    );
+  }
 
   //   update(customer) {
   //     const query = {
@@ -135,11 +130,11 @@ app.get("/comments", (req, res) => {
   response.then((rows) => res.status(200).send(rows));
 });
 
-// app.post("/customers", (req, res) => {
-//   const customer = new Customer({ name: req.body.name, email: req.body.email });
-//   let response = customermanager.new(customer);
-//   response.then((value) => res.status(200).send(value.rows[0].id));
-// });
+app.post("/comments", (req, res) => {
+  console.log(req.body.text);
+  let response = habitmanager.newComment(req.body.text);
+  res.status(200).send("success");
+});
 
 app.get("/time", (req, res) => {
   let response = habitmanager.getTime;

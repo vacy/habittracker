@@ -2,8 +2,9 @@
 status: false
 depending-on:
   - "[[stage 1 - make UI available]]"
+  - "[[comments]]"
 ---
-- [ ] Design Framework: Bootstrap React
+- [x] Design Framework: Bootstrap React
 - [ ] Diagramme für Kalender und Linecharts: https://nivo.rocks/
 - [ ] Suchmaschinenoptimierung (SEO) 
 	- semantische html tags
@@ -16,3 +17,4 @@ depending-on:
 	- [ ] Startseite: login or habits
 	- [ ] streaks
 	- [ ] momentum
+	- [ ] comments
