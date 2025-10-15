@@ -6,40 +6,59 @@ import { Link } from "react-router"
 export default function Header() {
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col>
-            <Link to="/">Start</Link>
+      <header>
+        <nav>
+          <Container fluid>
+            <Row>
+              <Col>
+                <div>
+                  <Link to="/">Start</Link>
+                </div>
+              </Col>
+              {/* <Col>
+            <Link to="/habits">Habits</Link>
           </Col>
           <Col>
-            <Link to="/Test">Habits</Link>
-          </Col>
-          <Col>
-            <Link to="/Momentum">Momentum</Link>
-          </Col>
-        </Row>
-      </Container>
+            <Link to="/momentum">Momentum</Link>
+          </Col> */}
+              <Col>
+                <div>
+                  <Link to="/contact">Kontakt</Link>
+                </div>
+              </Col>
+              <Col>
+                <div>
+                  <Link to="/comments">Forum</Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </nav>
+      </header>
       <style>
         {`  
-          div.App{background-color:grey}
-          div.col {
+          nav > div.container-fluid > div.row > div.col { 
+            padding:0;
+            height: 5vh;
             background-color: #073642;
-            text-align: center;
-            height: 5vh; 
-            width: 100vw;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-          }
-          div.col > a {
-            padding: 0 50%;
-            color: #fdf6e3;
-            text-decoration: none;
-            box-sizing: border-box; 
-          }
-          div.col > a:hover{
-            font-size: 150%;
-            text-decoration: underline;
+            
+            div {
+              height: 100%;
+              width: 100%;
+
+              a {
+                width: 100%;
+                height: 100%;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none; 
+                color: #fdf6e3;
+              }
+              a:hover{
+                font-size:430%;
+              }
+            }
           }
         `}
       </style>

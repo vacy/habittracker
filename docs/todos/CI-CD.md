@@ -8,3 +8,4 @@ depending-on:
 Deployment (CI/CD)-Pipeline.
 - Deployment der Webapp auf einem geeigneten Webserver
 oder Cloud-Dienst.
+- [ ] Vercel account
