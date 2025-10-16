@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 import { store } from "./app/store"
 import "./index.css"
 import { BrowserRouter, Routes, Route } from "react-router"
-import { App, Test } from "./App.jsx"
+import { App } from "./App.jsx"
 import Header from "./component/Header.jsx"
 import Login from "./component/Login.jsx"
 import Comments from "./component/Comments.jsx"
@@ -21,7 +21,7 @@ if (container) {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Login />} />
             <Route path="/chat" element={<Comments />} />
             <Route path="/login" element={<Login />} />
           </Routes>

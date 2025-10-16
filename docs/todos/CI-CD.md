@@ -9,3 +9,5 @@ Deployment (CI/CD)-Pipeline.
 - Deployment der Webapp auf einem geeigneten Webserver
 oder Cloud-Dienst.
 - [ ] Vercel account
+- [ ] work on fixed host addresses
+	- [ ] app.use(cors.... in api.js backend)

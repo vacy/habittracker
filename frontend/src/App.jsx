@@ -5,15 +5,4 @@ import "./App.css"
 
 import VariantsExample from "./component/Button.jsx"
 
-export const App = () => (
-  <div className="App">
-    <main>main</main>
-  </div>
-)
-
-export const Test = () => (
-  <div className="App">
-    <main>Test</main>
-    <VariantsExample></VariantsExample>
-  </div>
-)
+export const App = () => <main>main</main>

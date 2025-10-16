@@ -43,17 +43,6 @@ export default function Header() {
       </header>
       <style>
         {`  
-          @keyframes hover {
-            0% {
-                color: #fdf6e3;
-                transform: scale(1)}
-            60% {
-                color: #2aa198;
-                transform: scale(4.3)}
-            100% {
-                color: #fdf6e3;
-                transform: scale(4.0)}
-          }
           nav > div.container-fluid > div.row > div.col { 
             padding:0;
             height: 5vh;

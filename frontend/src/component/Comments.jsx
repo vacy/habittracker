@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
@@ -19,10 +19,7 @@ function Comments() {
   const [data, setData] = useState([])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
   const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    fetchComments()
-  }, [])
+  fetchComments()
 
   function fetchComments() {
     fetch("http://127.0.0.1:4300/comments").then(response =>
@@ -57,7 +54,7 @@ function Comments() {
   }
   return (
     <>
-      <div className="App">
+      <main>
         <Container>
           <form id="postComment" onSubmit={postComment}>
             <fieldset>
@@ -116,7 +113,7 @@ function Comments() {
 
       `}
         </style>
-      </div>
+      </main>
     </>
   )
 }

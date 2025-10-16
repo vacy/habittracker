@@ -1,12 +1,15 @@
 import express from "express";
 import mysql from "mysql2/promise";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 const app = express();
 const port = 4300;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use(cookieParser());
 
 // class Customer {
 //   constructor({ ID = 0, name, email, created_at = "" }) {
@@ -68,6 +71,16 @@ class HabitManager {
     return response;
   }
 
+  grantLogin(credentials) {
+    console.log(credentials.user);
+    console.log(credentials.password);
+    if (credentials.user != "god" && credentials.password != "god") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   get getAllComments() {
     let response = this.__query(
       "SELECT ID,text from comments ORDER BY ID DESC LIMIT 15"
@@ -125,6 +138,43 @@ const habitmanager = new HabitManager();
 //   response.then((value) => res.status(200).send(value.rows));
 // });
 
+app.get("/isLoggedin", (req, res) => {
+  const token = "abcd.123456.xyz";
+  console.log(req.headers.cookie);
+  if (token === req.cookies.token) {
+    console.log("your are authed");
+    res.status(200).send();
+  } else {
+    console.log("your are not authed");
+    res.status(401).send();
+  }
+});
+
+app.post("/login", (req, res) => {
+  // Our `token` cookie will be parsed into `req.cookies.token`
+  console.log("🍪", req.cookies);
+
+  // Configure the `token` HTTPOnly cookie
+  let options = {
+    maxAge: 1000 * 60 * 60 * 10, // expire after 15 minutes
+    httpOnly: true, // Cookie will not be exposed to client side code
+    sameSite: "none", // If client and server origins are different
+    secure: true, // dont care about https
+  };
+
+  const token = "abcd.123456.xyz"; // dummy JWT token
+  let response;
+  response = habitmanager.grantLogin(req.body);
+  if (response == true) {
+    // console.log("access granted for " + req.body.user);
+    res.cookie("token", token, options);
+    res.status(200).send("Cookie has been set!");
+  } else {
+    console.log("access forbidden for god");
+    res.status(401).send();
+  }
+});
+
 app.get("/comments", (req, res) => {
   let response = habitmanager.getAllComments;
   response.then((rows) => res.status(200).send(rows));
@@ -133,7 +183,7 @@ app.get("/comments", (req, res) => {
 app.post("/comments", (req, res) => {
   console.log(req.body.text);
   let response = habitmanager.newComment(req.body.text);
-  res.status(200).send("success");
+  res.status(201);
 });
 
 app.get("/time", (req, res) => {
