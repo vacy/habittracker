@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+
+const apiHost = "http://localhost:4300"
 
 function Comment({ text }) {
   return (
@@ -19,10 +21,12 @@ function Comments() {
   const [data, setData] = useState([])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
   const [message, setMessage] = useState("")
-  fetchComments()
+  useEffect(() => {
+    fetchComments()
+  }, [])
 
   function fetchComments() {
-    fetch("http://127.0.0.1:4300/comments").then(response =>
+    fetch(apiHost + "/comments").then(response =>
       response.json().then(comments => {
         setData(comments)
         setDataIsLoaded(true)
@@ -32,7 +36,7 @@ function Comments() {
 
   const postComment = event => {
     event.preventDefault()
-    fetch("http://127.0.0.1:4300/comments", {
+    fetch(apiHost + "/comments", {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -41,7 +45,7 @@ function Comments() {
       body: JSON.stringify({
         text: message,
       }),
-    }).then(response => console.log(response.statusText))
+    }).then(response => console.log("status: ", response.statusText))
     fetchComments()
   }
 

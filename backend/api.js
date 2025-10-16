@@ -2,13 +2,15 @@ import express from "express";
 import mysql from "mysql2/promise";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import jsonwebtoken from "jsonwebtoken";
 const app = express();
 const port = 4300;
+const frontend = "http://localhost:5173";
+const jwtsecret = "secretkeyappearshere"; //hardcoded for the exam, isnt any good for a real product, i would rather fetch that from an environment file upon CI/CD
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-
+app.use(cors({ origin: frontend, credentials: true }));
 app.use(cookieParser());
 
 // class Customer {
@@ -72,10 +74,15 @@ class HabitManager {
   }
 
   grantLogin(credentials) {
-    console.log(credentials.user);
-    console.log(credentials.password);
-    if (credentials.user != "god" && credentials.password != "god") {
-      return true;
+    if (credentials.user == "florian" && credentials.password == "password") {
+      const token = jsonwebtoken.sign(
+        {
+          user: credentials.user,
+        },
+        jwtsecret,
+        { expiresIn: "1h" }
+      );
+      return token;
     } else {
       return false;
     }
@@ -139,15 +146,17 @@ const habitmanager = new HabitManager();
 // });
 
 app.get("/isLoggedin", (req, res) => {
-  const token = "abcd.123456.xyz";
-  console.log(req.headers.cookie);
-  if (token === req.cookies.token) {
-    console.log("your are authed");
-    res.status(200).send();
-  } else {
-    console.log("your are not authed");
-    res.status(401).send();
+  const token = req.cookies.token;
+  if (token) {
+    const decodedToken = jsonwebtoken.verify(token, jwtsecret);
+    if (decodedToken.user == "florian") {
+      console.log("your are authed as", decodedToken.user);
+      res.status(200).send();
+      return;
+    }
   }
+  console.log("your are not authed");
+  res.status(401).send();
 });
 
 app.post("/login", (req, res) => {
@@ -162,15 +171,14 @@ app.post("/login", (req, res) => {
     secure: true, // dont care about https
   };
 
-  const token = "abcd.123456.xyz"; // dummy JWT token
-  let response;
-  response = habitmanager.grantLogin(req.body);
-  if (response == true) {
+  let token;
+  token = habitmanager.grantLogin(req.body);
+  if (token != false) {
     // console.log("access granted for " + req.body.user);
     res.cookie("token", token, options);
     res.status(200).send("Cookie has been set!");
   } else {
-    console.log("access forbidden for god");
+    console.log("access forbidden");
     res.status(401).send();
   }
 });
@@ -181,7 +189,7 @@ app.get("/comments", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
-  console.log(req.body.text);
+  console.log("posted comment: ", req.body.text);
   let response = habitmanager.newComment(req.body.text);
   res.status(201);
 });

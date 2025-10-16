@@ -42,9 +42,9 @@ function Login() {
     })
   }
   const navigate = useNavigate()
-  if (isAuthenticated) {
-    return <>{navigate("/chat")};</>
-  }
+  // if (isAuthenticated) {
+  //   return <>{navigate("/chat")};</>
+  // }
   return (
     <>
       <main>
@@ -93,6 +93,7 @@ function Login() {
                       id="user"
                       name="user"
                       placeholder="mail@domain.com"
+                      defaultValue="florian"
                     />
                   </Col>
                 </Row>
@@ -105,6 +106,7 @@ function Login() {
                       id="password"
                       name="password"
                       placeholder="password"
+                      defaultValue="password"
                     />
                   </Col>
                 </Row>
