@@ -6,15 +6,15 @@ depending-on:
 ---
 - [x] Design Framework: Bootstrap React
 - [ ] Diagramme für Kalender und Linecharts: https://nivo.rocks/
-- [ ] Suchmaschinenoptimierung (SEO) 
+- [x] Suchmaschinenoptimierung (SEO) 
 	- semantische html tags
-- [ ] Barrierefreiheit (Accessibility) für Nutzer mit Einschränkungen
+- [x] Barrierefreiheit (Accessibility) für Nutzer mit Einschränkungen
 	- semantische html tags
-- [ ] Schnelle Ladezeiten und Performance-Optimierung.  
+- [x] Schnelle Ladezeiten und Performance-Optimierung.  
 - [ ] Mobile Responsiveness, damit die App auch auf mobilen Geräten gut funktioniert
 	- mobile first
 - [ ] Seiten
 	- [ ] Startseite: login or habits
 	- [ ] streaks
 	- [ ] momentum
-	- [ ] comments
+	- [x] comments

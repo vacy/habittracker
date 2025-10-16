@@ -20,12 +20,12 @@ if (container) {
       <BrowserRouter>
         <Provider store={store}>
           <Header />
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/chat" element={<Chat />} />
+          </Routes>
         </Provider>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
       </BrowserRouter>
     </StrictMode>,
   )

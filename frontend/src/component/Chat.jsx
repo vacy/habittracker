@@ -60,23 +60,26 @@ function Chat() {
     <>
       <main>
         <Container>
+          <Row>
+            <h1>Chat mit dem Kundensupport</h1>
+          </Row>
+          <Row>
+            <ol>
+              {data.map(comment => (
+                <li
+                  className="item"
+                  key={comment.ID}
+                  style={{ listStyleType: "none" }}
+                >
+                  <Comment text={comment.text} />
+                </li>
+              ))}
+            </ol>
+          </Row>
           <form id="postComment" onSubmit={postComment}>
             <fieldset>
               <Row>
-                <legend>Chat</legend>
-              </Row>
-              <Row>
-                <ol>
-                  {data.map(comment => (
-                    <li
-                      className="item"
-                      key={comment.ID}
-                      style={{ listStyleType: "none" }}
-                    >
-                      <Comment text={comment.text} />
-                    </li>
-                  ))}
-                </ol>
+                <legend>Your Text</legend>
               </Row>
               <Row>
                 <textarea

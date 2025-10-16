@@ -3,25 +3,17 @@ import { useNavigate } from "react-router"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
 
 const apiHost = "http://localhost:4300"
 
 function Login() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  // const [isAuthenticated, setIsAuthenticated] = useState(false)
   // const [cookie, setCookie] = useState("")
   // const [data, setData] = useState([])
   // const [dataIsLoaded, setDataIsLoaded] = useState(false)
-
-  useEffect(() => {
-    fetch(apiHost + "/isLoggedin", {
-      method: "get",
-      credentials: "include",
-    }).then(response => {
-      if (response.ok) {
-        setIsAuthenticated(true)
-      }
-    })
-  }, [])
+  const dispatch = useDispatch()
 
   const login = event => {
     event.preventDefault()
@@ -37,14 +29,10 @@ function Login() {
       }),
     }).then(response => {
       if (response.ok) {
-        setIsAuthenticated(true)
+        dispatch(fetchLoginStatusRequest())
       }
     })
   }
-  const navigate = useNavigate()
-  // if (isAuthenticated) {
-  //   return <>{navigate("/chat")};</>
-  // }
   return (
     <>
       <main>

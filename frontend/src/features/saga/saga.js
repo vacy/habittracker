@@ -12,7 +12,7 @@ function* fetchLoginStatus() {
       credentials: "include",
     })
     if (!response.ok) {
-      throw new Error("Network response was not ok")
+      throw new Error("i am not logged in")
     }
     const data = yield response.status
     yield put(fetchLoginStatusSuccess(data))

@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  loginStatus: [],
+  isLoggedIn: false,
   error: "",
 }
 
@@ -15,9 +15,9 @@ const loginStatusReducer = (state = initialState, action) => {
     case FETCH_LOGINSTATUS_REQUEST:
       return { ...state, loading: true }
     case FETCH_LOGINSTATUS_SUCCESS:
-      return { loading: false, loginStatus: action.payload, error: "" }
+      return { loading: false, isLoggedIn: true, error: "" }
     case FETCH_LOGINSTATUS_FAILURE:
-      return { loading: false, loginStatus: [], error: action.payload }
+      return { loading: false, isLoggedIn: false, error: action.payload }
     default:
       return state
   }
