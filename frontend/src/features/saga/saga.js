@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from "redux-saga/effects"
 import {
-  FETCH_USERS_REQUEST,
-  fetchUsersSuccess,
-  fetchUsersFailure,
-} from "../actions/userActions"
+  FETCH_LOGINSTATUS_REQUEST,
+  fetchLoginStatusSuccess,
+  fetchLoginStatusFailure,
+} from "./actionTypes"
 
-function* fetchUsers() {
+function* fetchLoginStatus() {
   try {
     const response = yield call(fetch, "http://localhost:4300/isLoggedin", {
       method: "get",
@@ -15,14 +15,14 @@ function* fetchUsers() {
       throw new Error("Network response was not ok")
     }
     const data = yield response.status
-    yield put(fetchUsersSuccess(data))
+    yield put(fetchLoginStatusSuccess(data))
   } catch (error) {
-    yield put(fetchUsersFailure(error.message))
+    yield put(fetchLoginStatusFailure(error.message))
   }
 }
 
-function* userSaga() {
-  yield takeEvery(FETCH_USERS_REQUEST, fetchUsers)
+function* saga() {
+  yield takeEvery(FETCH_LOGINSTATUS_REQUEST, fetchLoginStatus)
 }
 
-export default userSaga
+export default saga

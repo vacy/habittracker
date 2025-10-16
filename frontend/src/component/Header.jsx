@@ -4,21 +4,43 @@ import Col from "react-bootstrap/Col"
 import { Link } from "react-router"
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUsersRequest } from "../actions/userActions"
-import { Provider } from "react-redux"
+import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
+// import { Provider } from "react-redux"
 
 export default function Header() {
   const dispatch = useDispatch()
-  const { loading, users, error } = useSelector(state => state)
+  const { loading, loginStatus, error } = useSelector(
+    state => state.loginStatus,
+  )
+  console.log(useSelector(state => state.loginStatus))
 
   useEffect(() => {
-    dispatch(fetchUsersRequest())
+    dispatch(fetchLoginStatusRequest())
   }, [dispatch])
 
   if (loading) return <h2>Loading...</h2>
   if (error) return <h2>Error: {error}</h2>
 
-  if (users != "200") {
+  if (loginStatus != "200") {
+    const navigate = useNavigate()
+    return (
+      <header>
+        <nav>
+          <Container fluid>
+            <Row>
+              <Col>
+                <div>
+                  <Link to="/">
+                    <span>Start</span>
+                    {navigate("/")}
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </nav>
+      </header>
+    )
   } else {
     return (
       <>

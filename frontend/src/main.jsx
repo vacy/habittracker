@@ -1,13 +1,13 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import store from "./store/"
+import store from "./features/saga/index.js"
 import "./index.css"
 import { BrowserRouter, Routes, Route } from "react-router"
 import { App } from "./App.jsx"
 import Header from "./component/Header.jsx"
 import Login from "./component/Login.jsx"
-import Comments from "./component/Comments.jsx"
+import Chat from "./component/Chat.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const container = document.getElementById("root")
@@ -23,7 +23,7 @@ if (container) {
         </Provider>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/chat" element={<Comments />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

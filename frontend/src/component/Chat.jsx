@@ -17,7 +17,7 @@ function Comment({ text }) {
   )
 }
 
-function Comments() {
+function Chat() {
   const [data, setData] = useState([])
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
   const [message, setMessage] = useState("")
@@ -122,4 +122,4 @@ function Comments() {
   )
 }
 
-export default Comments
+export default Chat
