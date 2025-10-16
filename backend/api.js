@@ -151,12 +151,12 @@ app.get("/isLoggedin", (req, res) => {
     const decodedToken = jsonwebtoken.verify(token, jwtsecret);
     if (decodedToken.user == "florian") {
       console.log("your are authed as", decodedToken.user);
-      res.status(200).send();
+      res.status(200).send("is logged in");
       return;
     }
   }
   console.log("your are not authed");
-  res.status(401).send();
+  res.status(401).send("not logged in");
 });
 
 app.post("/login", (req, res) => {

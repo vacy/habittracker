@@ -1,7 +1,7 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import { store } from "./app/store"
+import store from "./store/"
 import "./index.css"
 import { BrowserRouter, Routes, Route } from "react-router"
 import { App } from "./App.jsx"
@@ -17,16 +17,16 @@ if (container) {
 
   root.render(
     <StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <Header />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/chat" element={<Comments />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+        </Provider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/chat" element={<Comments />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </StrictMode>,
   )
 } else {
