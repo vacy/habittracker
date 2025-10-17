@@ -12,7 +12,7 @@ const DB_PASS = process.env.DB_PASS;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: FRONTENDHOST, credentials: true }));
 app.use(cookieParser());
 
 console.log("frontendhost:", FRONTENDHOST);
