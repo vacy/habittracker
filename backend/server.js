@@ -3,6 +3,7 @@ import mysql from "mysql2/promise";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import jsonwebtoken from "jsonwebtoken";
+import sqlstring from "sqlstring";
 const app = express();
 const port = 4300;
 const frontend = "healthifyme-red.vercel.app";
@@ -92,8 +93,10 @@ class HabitManager {
   //   }
 
   newComment(text) {
+    const sanitizedInput = sqlstring.escape(text);
+    console.log(sanitizedInput);
     let response = this.__query(
-      "INSERT INTO comments(text) VALUES ('" + text + "')"
+      "INSERT INTO comments(text) VALUES (" + sanitizedInput + ")"
     );
   }
 
@@ -182,7 +185,7 @@ app.get("/comments", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
-  comment = requestAnimationFrame.body.text;
+  const comment = req.body.text;
   if (comment.length > 500) {
     console.log(
       "posted comment is too long: ",
