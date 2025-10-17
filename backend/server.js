@@ -83,13 +83,6 @@ class HabitManager {
     return response;
   }
 
-  //   getId(ID) {
-  //     let response = this.__query(
-  //       "SELECT ID,name,email,created_at from customers WHERE ID =" + ID
-  //     );
-  //     return response;
-  //   }
-
   newComment(text) {
     const sanitizedInput = sqlstring.escape(text);
     console.log(sanitizedInput);
@@ -97,45 +90,7 @@ class HabitManager {
       "INSERT INTO comments(text) VALUES (" + sanitizedInput + ")"
     );
   }
-
-  //   update(customer) {
-  //     const query = {
-  //       text: "UPDATE customers SET name = $1, email = $2 WHERE ID = $3 RETURNING *",
-  //       values: [customer.name, customer.email, customer.ID],
-  //     };
-  //     let response = this.__query(query);
-  //     return response;
-  //   }
-
-  //   delete(ID) {
-  //     let response = this.__query(
-  //       "DELETE FROM customers WHERE ID = " + ID + " RETURNING *"
-  //     );
-  //     return response;
-  //   }
 }
-// app.get("/customer/:ID", (req, res) => {
-//   const customerid = req.params["ID"];
-//   console.log("asking for customer: " + customerid);
-//   let response = customermanager.getId(customerid);
-//   response.then((value) => res.status(200).send(value.rows));
-// });
-
-// app.put("/customer/:ID", (req, res) => {
-//   const customer = new Customer({
-//     ID: req.params["ID"],
-//     name: req.body.name,
-//     email: req.body.email,
-//   });
-
-//   let response = customermanager.update(customer);
-//   response.then((value) => res.status(200).send(value.rows));
-// });
-
-// app.delete("/customer/:ID", (req, res) => {
-//   let response = customermanager.delete(req.params["ID"]);
-//   response.then((value) => res.status(200).send(value.rows));
-// });
 
 const habitmanager = new HabitManager();
 
@@ -165,10 +120,10 @@ app.post("/login", (req, res) => {
 
   // Configure the `token` HTTPOnly cookie
   let options = {
-    maxAge: 1000 * 60 * 60 * 10, // expire after 15 minutes
+    maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
     httpOnly: true, // Cookie will not be exposed to client side code
-    sameSite: "none", // If client and server origins are different
-    secure: true, // dont care about https
+    sameSite: "Strict", // If client and server origins are different
+    secure: true, // care about https
   };
 
   let token;
