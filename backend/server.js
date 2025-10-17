@@ -6,22 +6,18 @@ import jsonwebtoken from "jsonwebtoken";
 import sqlstring from "sqlstring";
 const app = express();
 const port = 4300;
-const frontend = "healthifyme-red.vercel.app";
-const jwtsecret = "secretkeyappearshere"; //hardcoded for the exam, isnt any good for a real product, i would rather fetch that from an environment file upon CI/CD
+const FRONTENDHOST = process.env.FRONTENDHOST;
+const JWTSECRET = process.env.JWTSECRET;
+const DB_PASS = process.env.DB_PASS;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: frontend, credentials: true }));
+app.use(cors({ origin: FRONTENDHOST, credentials: true }));
 app.use(cookieParser());
 
-// class Customer {
-//   constructor({ ID = 0, name, email, created_at = "" }) {
-//     this.ID = ID;
-//     this.name = name;
-//     this.email = email;
-//     this.created_at = created_at;
-//   }
-// }
+console.log("frontendhost:", FRONTENDHOST);
+console.log("JWTSECRET:", JWTSECRET);
+console.log("DB_PASS: ", DB_PASS);
 
 class HabitManager {
   constructor() {
@@ -29,7 +25,7 @@ class HabitManager {
       host: "healthifyme-healthifyme.e.aivencloud.com",
       port: "28091",
       user: "avnadmin",
-      password: process.env.DB_PASS,
+      password: DB_PASS,
       database: "defaultdb",
     });
     this.__connectDatabase();
@@ -71,7 +67,7 @@ class HabitManager {
         {
           user: credentials.user,
         },
-        jwtsecret,
+        JWTSECRET,
         { expiresIn: "24h" }
       );
       return token;
@@ -147,7 +143,7 @@ app.get("/isLoggedin", (req, res) => {
   const token = req.cookies.token;
   if (token) {
     try {
-      const decodedToken = jsonwebtoken.verify(token, jwtsecret);
+      const decodedToken = jsonwebtoken.verify(token, JWTSECRET);
       if (decodedToken.user == "florian") {
         console.log("your are authed as", decodedToken.user);
         res.status(200).send("is logged in");
