@@ -12,6 +12,8 @@
 
     "jsonwebtoken": "^9.0.2",
 
+    "mysql2": "^3.15.2",
+
     "sqlstring": "^2.3.3",
 
     "supertest": "^7.1.4"
