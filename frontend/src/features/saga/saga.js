@@ -4,10 +4,12 @@ import {
   fetchLoginStatusSuccess,
   fetchLoginStatusFailure,
 } from "./actionTypes"
+import { Scripts } from "react-router"
 
+const apiHost = "http://healthifyme-api.vercel.app"
 function* fetchLoginStatus() {
   try {
-    const response = yield call(fetch, "http://localhost:4300/isLoggedin", {
+    const response = yield call(fetch, apiHost + "/isLoggedin", {
       method: "get",
       credentials: "include",
     })

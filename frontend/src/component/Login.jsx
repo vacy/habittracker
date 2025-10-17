@@ -6,13 +6,9 @@ import Col from "react-bootstrap/Col"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
 
-const apiHost = "http://localhost:4300"
+const apiHost = "http://healthifyme-api.vercel.app"
 
 function Login() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false)
-  // const [cookie, setCookie] = useState("")
-  // const [data, setData] = useState([])
-  // const [dataIsLoaded, setDataIsLoaded] = useState(false)
   const dispatch = useDispatch()
 
   const login = event => {
