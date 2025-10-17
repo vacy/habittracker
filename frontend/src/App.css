@@ -11,6 +11,21 @@ main {
   background-color: #fdf6e3;
 }
 
+textarea {
+  color: #fdf6e3;
+  background-color: #073642;
+  padding: 0;
+  border-width: 0;
+}
+
+button {
+  color: #fdf6e3;
+  background-color: #073642;
+  padding: 0;
+  border-width: 0px;
+  border-top-width: 2px;
+}
+
 nav > div.container-fluid > div.row > ol {
   display: flex;
   padding: 0;

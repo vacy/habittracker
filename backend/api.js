@@ -39,25 +39,14 @@ class HabitManager {
   }
 
   async __connectDatabase() {
-    await this.db.then(
-      (db) => {
-        try {
-          db.connect();
-          console.log("connected to database...");
-        } catch (err) {
-          console.error(err);
-        }
+    await this.db.then((db) => {
+      try {
+        db.connect();
+        console.log("connected to database...");
+      } catch (err) {
+        console.error(err);
       }
-      // db.connect(function (error, results, fields) {
-      //   try {
-      //     if (error) throw error;
-      //     console.log("connected to mysql...");
-      //   } catch (error) {
-      //     console.log(error.code);
-      //     console.log(error.fatal);
-      //   }
-      // })
-    );
+    });
   }
 
   async __query(request) {
@@ -124,9 +113,6 @@ class HabitManager {
   //     return response;
   //   }
 }
-
-const habitmanager = new HabitManager();
-
 // app.get("/customer/:ID", (req, res) => {
 //   const customerid = req.params["ID"];
 //   console.log("asking for customer: " + customerid);
@@ -144,6 +130,13 @@ const habitmanager = new HabitManager();
 //   let response = customermanager.update(customer);
 //   response.then((value) => res.status(200).send(value.rows));
 // });
+
+// app.delete("/customer/:ID", (req, res) => {
+//   let response = customermanager.delete(req.params["ID"]);
+//   response.then((value) => res.status(200).send(value.rows));
+// });
+
+const habitmanager = new HabitManager();
 
 app.get("/isLoggedin", (req, res) => {
   const token = req.cookies.token;
@@ -189,7 +182,16 @@ app.get("/comments", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
-  console.log("posted comment: ", req.body.text);
+  comment = requestAnimationFrame.body.text;
+  if (comment.length > 500) {
+    console.log(
+      "posted comment is too long: ",
+      comment.length,
+      " chars, while 500 allowed"
+    );
+    res.status(413).send("Payload too large");
+  }
+
   let response = habitmanager.newComment(req.body.text);
   res.status(201);
 });
@@ -198,11 +200,6 @@ app.get("/time", (req, res) => {
   let response = habitmanager.getTime;
   response.then((rows) => res.status(200).send(rows[0]["NOW()"]));
 });
-
-// app.delete("/customer/:ID", (req, res) => {
-//   let response = customermanager.delete(req.params["ID"]);
-//   response.then((value) => res.status(200).send(value.rows));
-// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);

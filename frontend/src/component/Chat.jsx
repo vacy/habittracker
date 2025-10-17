@@ -86,6 +86,7 @@ function Chat() {
                   id="message"
                   name="message"
                   placeholder="Deine Nachricht..."
+                  maxlength="500"
                   onBlur={event => setMessage(event.target.value)}
                 />
               </Row>

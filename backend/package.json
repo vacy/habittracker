@@ -8,7 +8,9 @@
 
     "cors": "^2.8.5",
 
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+
+    "supertest": "^7.1.4"
 
   }
 
