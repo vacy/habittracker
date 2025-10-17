@@ -6,7 +6,7 @@ import {
 } from "./actionTypes"
 import { Scripts } from "react-router"
 
-const apiHost = "http://healthifyme-api.vercel.app"
+const apiHost = "https://healthifyme-api.vercel.app"
 function* fetchLoginStatus() {
   try {
     const response = yield call(fetch, apiHost + "/isLoggedin", {

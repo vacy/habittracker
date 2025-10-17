@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
 
-const apiHost = "http://healthifyme-api.vercel.app"
+const apiHost = "https://healthifyme-api.vercel.app"
 
 function Login() {
   const dispatch = useDispatch()

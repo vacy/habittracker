@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-const apiHost = "http://healthifyme-api.vercel.app"
+const apiHost = "https://healthifyme-api.vercel.app"
 
 function Comment({ text }) {
   return (
