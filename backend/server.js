@@ -26,9 +26,11 @@ app.use(cookieParser());
 class HabitManager {
   constructor() {
     this.db = mysql.createConnection({
-      socketPath: "/tmp/habittracker/mysql.socket",
-      user: "jfh",
-      database: "habittracker",
+      host: "healthifyme-healthifyme.e.aivencloud.com",
+      port: "28091",
+      user: "avnadmin",
+      password: process.env.DB_PASS,
+      database: "defaultdb",
     });
     this.__connectDatabase();
     this.__query(
@@ -70,7 +72,7 @@ class HabitManager {
           user: credentials.user,
         },
         jwtsecret,
-        { expiresIn: "1h" }
+        { expiresIn: "24h" }
       );
       return token;
     } else {
@@ -144,11 +146,17 @@ const habitmanager = new HabitManager();
 app.get("/isLoggedin", (req, res) => {
   const token = req.cookies.token;
   if (token) {
-    const decodedToken = jsonwebtoken.verify(token, jwtsecret);
-    if (decodedToken.user == "florian") {
-      console.log("your are authed as", decodedToken.user);
-      res.status(200).send("is logged in");
-      return;
+    try {
+      const decodedToken = jsonwebtoken.verify(token, jwtsecret);
+      if (decodedToken.user == "florian") {
+        console.log("your are authed as", decodedToken.user);
+        res.status(200).send("is logged in");
+        return;
+      }
+    } catch ({ name, message }) {
+      if (name == "TokenExpiredError") {
+        console.log("user has been logged in, but token expired");
+      }
     }
   }
   console.log("your are not authed");
