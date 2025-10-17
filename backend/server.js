@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import jsonwebtoken from "jsonwebtoken";
 const app = express();
 const port = 4300;
-const frontend = "http://localhost:5173";
+const frontend = "healthifyme-red.vercel.app";
 const jwtsecret = "secretkeyappearshere"; //hardcoded for the exam, isnt any good for a real product, i would rather fetch that from an environment file upon CI/CD
 
 app.use(express.urlencoded({ extended: true }));
