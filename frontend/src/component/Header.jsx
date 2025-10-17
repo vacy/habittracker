@@ -45,8 +45,13 @@ export default function Header() {
                     </Col>
                     <Col>
                       <li>
-                        <Link to="/comments">
-                          <span>Forum</span>
+                        <Link
+                          onClick={
+                            (document.cookie =
+                              "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;")
+                          }
+                        >
+                          <span>Logout</span>
                         </Link>
                       </li>
                     </Col>
