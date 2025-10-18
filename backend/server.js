@@ -131,7 +131,7 @@ app.post("/login", (req, res) => {
   if (token != false) {
     // console.log("access granted for " + req.body.user);
     // res.cookie("token", token, options);
-    res.status(200).send(token);
+    res.header("X-bearer-token", token).status(200).send();
   } else {
     console.log("access forbidden");
     res.status(401).send();

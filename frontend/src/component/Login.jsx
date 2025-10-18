@@ -27,7 +27,7 @@ function Login() {
     }).then(response => {
       if (response.ok) {
         console.log(response)
-        const token = response.body
+        const token = response.headers.get("X-bearer-token")
         let options = {
           maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
           // httpOnly: true, // Cookie will not be exposed to client side code
