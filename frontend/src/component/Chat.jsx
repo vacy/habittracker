@@ -27,14 +27,13 @@ function Chat() {
   }, [])
 
   function fetchComments() {
-    fetch(apiHost + "/comments")
-      .then(response =>
-        response.json().then(comments => {
-          setData(comments)
-          setDataIsLoaded(true)
-        }),
-      )
-      .then(response => console.log("response is ok?: ", response.ok))
+    fetch(apiHost + "/comments").then(response =>
+      response.json().then(comments => {
+        setData(comments)
+        setDataIsLoaded(true)
+        console.log("response is ok?: ", response.ok)
+      }),
+    )
   }
 
   const postComment = event => {
