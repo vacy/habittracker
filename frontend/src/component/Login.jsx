@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
+import Cookies from "universal-cookie"
 
 const apiHost = "https://healthifyme-api.vercel.app"
 
@@ -25,6 +26,16 @@ function Login() {
       }),
     }).then(response => {
       if (response.ok) {
+        console.log(response)
+        const token = response.body
+        let options = {
+          maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
+          // httpOnly: true, // Cookie will not be exposed to client side code
+          sameSite: "Strict", // If client and server origins are different
+          secure: true, // care about https
+        }
+        const cookies = new Cookies()
+        cookies.set("token", token, { options })
         dispatch(fetchLoginStatusRequest())
       }
     })

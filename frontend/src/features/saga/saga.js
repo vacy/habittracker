@@ -5,14 +5,20 @@ import {
   fetchLoginStatusFailure,
 } from "./actionTypes"
 import { Scripts } from "react-router"
+import Cookies from "universal-cookie"
 
 const apiHost = "https://healthifyme-api.vercel.app"
 function* fetchLoginStatus() {
   try {
-    const response = yield call(fetch, apiHost + "/isLoggedin", {
-      method: "get",
-      credentials: "include",
-    })
+    const cookies = new Cookies()
+    const response = yield call(
+      fetch,
+      apiHost + "/isLoggedin/?token=" + cookies.token,
+      {
+        method: "get",
+        // credentials: "include",
+      },
+    )
     if (!response.ok) {
       throw new Error("i am not logged in")
     }
