@@ -25,7 +25,7 @@ function Login() {
         password: document.getElementById("password").value,
       }),
     })
-      .then(response => response.json())
+      .then(response => response.text())
       .then(response => {
         if (response.ok) {
           const token = response.headers.get("x-bearer-token")
