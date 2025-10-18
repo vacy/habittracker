@@ -31,7 +31,7 @@ function Login() {
         response.text().then(token => {
           console.log("token: ", token)
           let options = {
-            maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
+            // maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
             // httpOnly: true, // Cookie will not be exposed to client side code
             sameSite: "Lax", // If client and server origins are different
             secure: true, // care about https
