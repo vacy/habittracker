@@ -15,7 +15,19 @@ export default function Header() {
   useEffect(() => {
     dispatch(fetchLoginStatusRequest())
   }, [dispatch])
-  console.log("loginstatus", isLoggedIn, loading)
+
+  console.log(
+    "loginstatus - ",
+    "isLoggedIn: ",
+    isLoggedIn,
+    " loginCheckRunning: ",
+    loading,
+  )
+  function logout() {
+    document.cookie =
+      "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+  }
+
   if (loading) {
     return <h2>Loading...</h2>
   } else {
@@ -45,12 +57,7 @@ export default function Header() {
                     </Col>
                     <Col>
                       <li>
-                        <Link
-                        // onClick={
-                        //   (document.cookie =
-                        //     "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;")
-                        // }
-                        >
+                        <Link onClick={logout}>
                           <span>Logout</span>
                         </Link>
                       </li>
