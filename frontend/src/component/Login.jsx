@@ -27,7 +27,7 @@ function Login() {
     }).then(response => {
       if (response.ok) {
         response.text().then(response => {
-          console.log(reponse)
+          console.log(response)
           const token = response.headers.get("x-bearer-token")
           console.log(token)
           let options = {
