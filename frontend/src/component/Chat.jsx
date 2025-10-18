@@ -46,8 +46,10 @@ function Chat() {
       body: JSON.stringify({
         text: message,
       }),
+    }).then(response => {
+      console.log("status: ", response.statusText)
+      fetchComments()
     })
-    fetchComments()
   }
 
   if (!dataIsLoaded) {
