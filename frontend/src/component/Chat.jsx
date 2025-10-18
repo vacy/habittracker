@@ -49,8 +49,8 @@ function Chat() {
       }),
     }).then(response => {
       console.log("status: ", response.status)
-      fetchComments()
     })
+    fetchComments()
   }
 
   if (!dataIsLoaded) {
