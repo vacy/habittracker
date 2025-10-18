@@ -14,6 +14,11 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchLoginStatusRequest())
+    if (isLoggedIn) {
+      if (useLocation().pathname == "/") navigate("/chat")
+    } else {
+      if (useLocation().pathname != "/") navigate("/")
+    }
   }, [dispatch])
 
   console.log(
@@ -41,9 +46,6 @@ export default function Header() {
     )
   } else {
     if (isLoggedIn) {
-      if (useLocation().pathname == "/") {
-        navigate("chat")
-      }
       return (
         <>
           <header>
@@ -101,8 +103,6 @@ export default function Header() {
             </header>
           </>
         )
-      } else {
-        return <>{navigate("/")};</>
       }
     }
   }
