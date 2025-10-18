@@ -27,19 +27,17 @@ function Login() {
     }).then(response =>
       response.then(response => {
         if (response.ok) {
-          response.text().then(response => {
-            const token = response.headers.get("x-bearer-token")
-            console.log(token)
-            let options = {
-              maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
-              // httpOnly: true, // Cookie will not be exposed to client side code
-              sameSite: "Strict", // If client and server origins are different
-              secure: true, // care about https
-            }
-            const cookies = new Cookies()
-            cookies.set("token", token, { options })
-            dispatch(fetchLoginStatusRequest())
-          })
+          const token = response.headers.get("x-bearer-token")
+          console.log(token)
+          let options = {
+            maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
+            // httpOnly: true, // Cookie will not be exposed to client side code
+            sameSite: "Strict", // If client and server origins are different
+            secure: true, // care about https
+          }
+          const cookies = new Cookies()
+          cookies.set("token", token, { options })
+          dispatch(fetchLoginStatusRequest())
         }
       }),
     )
