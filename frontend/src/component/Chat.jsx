@@ -47,7 +47,7 @@ function Chat() {
         text: message,
       }),
     }).then(response => {
-      console.log("status: ", response.statusText)
+      console.log("status: ", response.status)
       fetchComments()
     })
   }
