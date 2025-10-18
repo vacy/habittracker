@@ -31,6 +31,7 @@ function Login() {
         reader.read().then(stream => {
           let result = ""
           let done
+          let value
           while ((({ done, value } = stream), !done)) {
             result += decoder.decode(value, { stream: true })
             console.log("Complete result:", result)
