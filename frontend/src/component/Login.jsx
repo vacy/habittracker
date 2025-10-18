@@ -24,9 +24,8 @@ function Login() {
         user: document.getElementById("user").value,
         password: document.getElementById("password").value,
       }),
-    })
-      .then(response => response.text())
-      .then(response => {
+    }).then(response =>
+      response.text().then(response => {
         if (response.ok) {
           const token = response.headers.get("x-bearer-token")
           console.log(token)
@@ -40,7 +39,8 @@ function Login() {
           cookies.set("token", token, { options })
           dispatch(fetchLoginStatusRequest())
         }
-      })
+      }),
+    )
   }
   return (
     <>
