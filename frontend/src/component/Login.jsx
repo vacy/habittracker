@@ -40,7 +40,7 @@ function Login() {
           cookies.set("token", token, { options })
           const test = cookies.get("token")
           console.log("cookie object: ", test)
-          console.log("set cookie: ", cookies.get("token", (doNotParse = true)))
+          console.log("set cookie: ", cookies.get("token", true))
           dispatch(fetchLoginStatusRequest())
         })
       }
