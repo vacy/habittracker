@@ -38,7 +38,9 @@ function Login() {
           }
           const cookies = new Cookies()
           cookies.set("token", token, { options })
-          console.log("set cookie: ", cookies.get("token"))
+          const test = cookies.get("token")
+          console.log("cookie object: ", test)
+          console.log("set cookie: ", cookies.get("token", (doNotParse = true)))
           dispatch(fetchLoginStatusRequest())
         })
       }
