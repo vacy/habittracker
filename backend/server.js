@@ -95,7 +95,10 @@ class HabitManager {
 const habitmanager = new HabitManager();
 
 app.get("/isLoggedin", (req, res) => {
-  const token = req.cookies.token;
+  let token = req.cookies.token;
+  if (!token) {
+    token = req.query.token;
+  }
   if (token) {
     try {
       const decodedToken = jsonwebtoken.verify(token, JWTSECRET);
@@ -131,7 +134,7 @@ app.post("/login", (req, res) => {
   if (token != false) {
     // console.log("access granted for " + req.body.user);
     // res.cookie("token", token, options);
-    res.header("X-bearer-token", token).status(200).send();
+    res.header("X-bearer-token", token).status(200).send(token);
   } else {
     console.log("access forbidden");
     res.status(401).send();

@@ -8,6 +8,7 @@ import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
 import Cookies from "universal-cookie"
 
 const apiHost = "https://healthifyme-api.vercel.app"
+// const apiHost = "http://localhost:4300"
 
 function Login() {
   const dispatch = useDispatch()
@@ -26,31 +27,18 @@ function Login() {
       }),
     }).then(response => {
       if (response.ok) {
-        const reader = response.body.getReader()
-        const decoder = new TextDecoder("utf-8")
-        reader.read().then(stream => {
-          let result = ""
-          let done
-          let value
-          while ((({ done, value } = stream), !done)) {
-            result += decoder.decode(value, { stream: true })
-            console.log("Complete result:", result)
-          }
-        })
-
         // Process the complete result
-
-        const token = response.headers.get("x-bearer-token")
-        console.log(token)
-        let options = {
-          maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
-          // httpOnly: true, // Cookie will not be exposed to client side code
-          sameSite: "Strict", // If client and server origins are different
-          secure: true, // care about https
-        }
-        const cookies = new Cookies()
-        cookies.set("token", token, { options })
-        dispatch(fetchLoginStatusRequest())
+        response.text().then(token => {
+          let options = {
+            maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
+            // httpOnly: true, // Cookie will not be exposed to client side code
+            sameSite: "Strict", // If client and server origins are different
+            secure: true, // care about https
+          }
+          const cookies = new Cookies()
+          cookies.set("token", token, { options })
+          dispatch(fetchLoginStatusRequest())
+        })
       }
     })
   }

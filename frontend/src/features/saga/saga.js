@@ -8,12 +8,14 @@ import { Scripts } from "react-router"
 import Cookies from "universal-cookie"
 
 const apiHost = "https://healthifyme-api.vercel.app"
+// const apiHost = "http://localhost:4300"
 function* fetchLoginStatus() {
   try {
     const cookies = new Cookies()
+
     const response = yield call(
       fetch,
-      apiHost + "/isLoggedin/?token=" + cookies.token,
+      apiHost + "/isLoggedin?token=" + cookies.get("token"),
       {
         method: "get",
         // credentials: "include",

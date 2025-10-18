@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 const apiHost = "https://healthifyme-api.vercel.app"
+// const apiHost = "http://localhost:4300"
 
 function Comment({ text }) {
   return (
