@@ -29,6 +29,8 @@ function Login() {
         const reader = response.body.getReader()
         const decoder = new TextDecoder("utf-8")
         reader.read().then(stream => {
+          let result = ""
+          let done
           while ((({ done, value } = stream), !done)) {
             result += decoder.decode(value, { stream: true })
             console.log("Complete result:", result)
