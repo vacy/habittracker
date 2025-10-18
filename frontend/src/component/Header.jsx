@@ -26,6 +26,7 @@ export default function Header() {
   function logout() {
     document.cookie =
       "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    dispatch(fetchLoginStatusRequest())
   }
 
   if (loading) {
