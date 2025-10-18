@@ -26,7 +26,17 @@ function Login() {
       }),
     }).then(response => {
       if (response.ok) {
-        console.log(response)
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder("utf-8")
+        reader.read().then(stream => {
+          while ((({ done, value } = stream), !done)) {
+            result += decoder.decode(value, { stream: true })
+            console.log("Complete result:", result)
+          }
+        })
+
+        // Process the complete result
+
         const token = response.headers.get("x-bearer-token")
         console.log(token)
         let options = {
