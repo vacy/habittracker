@@ -24,7 +24,8 @@ function Login() {
         user: document.getElementById("user").value,
         password: document.getElementById("password").value,
       }),
-    }).then(response =>response.text())
+    })
+      .then(response => response.text())
       .then(response => {
         if (response.ok) {
           console.log(reponse)
@@ -41,8 +42,8 @@ function Login() {
           dispatch(fetchLoginStatusRequest())
         }
       })
-    
-  
+  }
+
   return (
     <>
       <main>
