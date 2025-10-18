@@ -33,11 +33,11 @@ function Login() {
           let options = {
             // maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
             // httpOnly: true, // Cookie will not be exposed to client side code
-            sameSite: "Lax", // If client and server origins are different
+            sameSite: "none", // If client and server origins are different
             secure: true, // care about https
           }
           const cookies = new Cookies()
-          cookies.set("token", token, { options })
+          // cookies.set("token", token, { options })
           const test = cookies.get("token")
           console.log("cookie object: ", test)
           console.log("set cookie: ", cookies.get("token", true))
