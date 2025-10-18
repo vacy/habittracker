@@ -26,44 +26,46 @@ button {
   border-top-width: 2px;
 }
 
-nav > div.container-fluid > div.row > ol {
-  display: flex;
-  padding: 0;
-  margin: 0;
-
-  div.col {
+nav {
+  background-color: #073642;
+  div.container-fluid > div.row > ol {
+    display: flex;
     padding: 0;
-    height: 5vh;
-    background-color: #073642;
+    margin: 0;
 
-    li {
-      width: 100%;
-      height: 100%;
-      list-style-type: none;
+    div.col {
+      padding: 0;
+      height: 5vh;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      a {
+      li {
         width: 100%;
         height: 100%;
-        text-decoration: none;
+        list-style-type: none;
+
         display: flex;
-        justify-content: center;
         align-items: center;
-        span {
+        justify-content: center;
+
+        a {
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          span {
+            color: #fdf6e3;
+            transform: scale(1.5);
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+          }
+        }
+        a:hover > span {
           color: #fdf6e3;
-          transform: scale(1.5);
+          transform: scale(4);
           transition-duration: 0.5s;
           transition-timing-function: ease-out;
         }
-      }
-      a:hover > span {
-        color: #fdf6e3;
-        transform: scale(4);
-        transition-duration: 0.5s;
-        transition-timing-function: ease-out;
       }
     }
   }

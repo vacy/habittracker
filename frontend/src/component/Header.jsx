@@ -30,7 +30,11 @@ export default function Header() {
   }
 
   if (loading) {
-    return <h2>Loading...</h2>
+    return (
+      <header>
+        <nav>Loading...</nav>
+      </header>
+    )
   } else {
     if (isLoggedIn) {
       if (useLocation().pathname == "/") {

@@ -52,9 +52,9 @@ function Chat() {
 
   if (!dataIsLoaded) {
     return (
-      <div>
+      <main>
         <h1>Please wait while comments are loading....</h1>
-      </div>
+      </main>
     )
   }
   return (
