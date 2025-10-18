@@ -26,8 +26,7 @@ button {
   border-top-width: 2px;
 }
 
-nav {
-  background-color: #073642;
+span {
   div.container-fluid > div.row > ol {
     display: flex;
     padding: 0;

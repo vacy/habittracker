@@ -26,6 +26,18 @@ button {
   border-top-width: 2px;
 }
 
+nav {
+  background-color: #073642;
+  color: #fdf6e3;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    transform: scale(1.5);
+  }
+}
+
 nav > div.container-fluid > div.row > ol {
   display: flex;
   padding: 0;
@@ -33,8 +45,6 @@ nav > div.container-fluid > div.row > ol {
 
   div.col {
     padding: 0;
-    height: 5vh;
-    background-color: #073642;
 
     li {
       width: 100%;

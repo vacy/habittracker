@@ -31,9 +31,13 @@ export default function Header() {
 
   if (loading) {
     return (
-      <header>
-        <nav>Loading...</nav>
-      </header>
+      <>
+        <header>
+          <nav>
+            <span>Loading...</span>
+          </nav>
+        </header>
+      </>
     )
   } else {
     if (isLoggedIn) {
