@@ -1,1 +1,5 @@
-export const App = () => <main>main</main>
+export const App = () => (
+  <main>
+    <div>main</div>
+  </main>
+)
