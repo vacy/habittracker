@@ -68,6 +68,13 @@ export default function Header() {
                     </Col>
                     <Col>
                       <li>
+                        <Link to="/meals">
+                          <span>Meals</span>
+                        </Link>
+                      </li>
+                    </Col>
+                    <Col>
+                      <li>
                         <Link onClick={logout}>
                           <span>Logout</span>
                         </Link>
