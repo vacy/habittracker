@@ -14,12 +14,12 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchLoginStatusRequest())
-    if (isLoggedIn) {
-      if (useLocation().pathname == "/") navigate("/chat")
-    } else {
-      if (useLocation().pathname != "/") navigate("/")
-    }
   }, [dispatch])
+  if (isLoggedIn) {
+    if (useLocation().pathname == "/") navigate("/chat")
+  } else {
+    if (useLocation().pathname != "/") navigate("/")
+  }
 
   console.log(
     "loginstatus - ",

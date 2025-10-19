@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router"
 import Header from "./component/Header.jsx"
 import Login from "./component/Login.jsx"
 import Chat from "./component/Chat.jsx"
-import Meals from "./component/Meals.jsx"
+// import Meals from "./component/Meals.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const container = document.getElementById("root")
@@ -24,7 +24,7 @@ if (container) {
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/chat" element={<Chat />} />
-            <Route path="/meals" element={<Meals />} />
+            {/* <Route path="/meals" element={<Meals />} /> */}
           </Routes>
         </Provider>
       </BrowserRouter>
