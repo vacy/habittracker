@@ -1,7 +1,22 @@
 # Habittracker
+
 habittracking - but forgiving. Can't miss a streak? revive it and build momentum!
 
+## API
+
+- GET /comments
+  pull the last 15 chatmessages from the database
+- POST /comments
+  post a new message to the chat
+  response is 200 if the comment was published
+  In case you send more than 500 chars you'll get an http error 413 response
+
+- GET /isLoggedin?token=
+  handover the JWT token to the API to ask for your login status
+  response is either 200(you are logged in) or 403(not logged in)
+
 ## Classes
+
 ```mermaid
 ---
 title: class diagram
@@ -9,29 +24,31 @@ title: class diagram
 classDiagram
     Habit "1" <.. "1" Log : implements
 
-    class Habit{ 
+    class Habit{
       %%<<Interface>>%%
       +integer               ID
       +string                 title
       +string                 description
       +Log                    log
       +time                   rule
-      +signal~bool~     changed 
+      +signal~bool~     changed
       +checkin()
       +setID(IDtoVerify string)
-    } 
+    }
 
-    class Log{ 
+    class Log{
       %%<<Service>>%%
       +Array~number~        allStreaks
-      +signal~bool~             changed 
+      +signal~bool~             changed
       +getLast() Tuple~StreakCheckin~
       +checkin(rule StreakCheckin as Tuple)
     }
 ```
 
 ## Backend
+
 ### Database
+
 ```mermaid
 ---
 title: Habit Database Entity Relationship Diagram
