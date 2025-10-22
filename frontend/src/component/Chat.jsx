@@ -51,6 +51,7 @@ function Chat() {
       console.log("postComment response.status: ", response.status)
       fetchComments() // warum geht der nicht in dieses .then()
     })
+    setDataIsLoaded(false)
     fetchComments()
     fetchComments()
     fetchComments()
