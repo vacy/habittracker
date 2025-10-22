@@ -141,7 +141,7 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.get("logout", (req, res) => {
+app.get("/logout", (req, res) => {
   let options = {
     maxAge: 0, // expire after 10 hours
     httpOnly: true, // Cookie will not be exposed to client side code
