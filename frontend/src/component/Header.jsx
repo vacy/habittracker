@@ -32,6 +32,10 @@ export default function Header() {
     document.cookie =
       "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
     dispatch(fetchLoginStatusRequest())
+    const apiHost = "https://healthifyme-api.vercel.app"
+    fetch(apiHost + "/logout")
+      .then(response => response.text())
+      .then(response => console.log("logout response"))
   }
 
   if (loading) {

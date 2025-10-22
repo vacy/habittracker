@@ -141,6 +141,17 @@ app.post("/login", (req, res) => {
   }
 });
 
+app.get("logout", (req, res) => {
+  let options = {
+    maxAge: 0, // expire after 10 hours
+    httpOnly: true, // Cookie will not be exposed to client side code
+    sameSite: "None", // If client and server origins are different
+    secure: true, // care about https
+  };
+  res.cookie("token", "invalid", options);
+  res.status(200).send();
+});
+
 app.get("/comments", (req, res) => {
   let response = habitmanager.getAllComments;
   response.then((rows) => res.status(200).send(rows));
