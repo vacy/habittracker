@@ -31,7 +31,7 @@ function Chat() {
       response.json().then(comments => {
         setData(comments)
         setDataIsLoaded(true)
-        console.log("response is ok?: ", response.ok)
+        console.log("fetchComments response is ok?: ", response.ok)
       }),
     )
   }
@@ -48,9 +48,13 @@ function Chat() {
         text: message,
       }),
     }).then(response => {
-      console.log("status: ", response.status)
+      console.log("postComment response.status: ", response.status)
+
+      fetchComments()
     })
-    fetchComments()
+    // fetchComments()
+    // fetchComments()
+    // fetchComments()
   }
 
   if (!dataIsLoaded) {
