@@ -49,12 +49,11 @@ function Chat() {
       }),
     }).then(response => {
       console.log("postComment response.status: ", response.status)
-
-      fetchComments()
+      fetchComments() // warum geht der nicht in dieses .then()
     })
-    // fetchComments()
-    // fetchComments()
-    // fetchComments()
+    fetchComments()
+    fetchComments()
+    fetchComments()
   }
 
   if (!dataIsLoaded) {
