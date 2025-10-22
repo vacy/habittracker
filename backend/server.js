@@ -133,7 +133,7 @@ app.post("/login", (req, res) => {
   token = habitmanager.grantLogin(req.body);
   if (token != false) {
     // console.log("access granted for " + req.body.user);
-    // res.cookie("token", token, options);
+    res.cookie("token", token, options);
     res.header("X-bearer-token", token).status(200).send(token);
   } else {
     console.log("access forbidden");

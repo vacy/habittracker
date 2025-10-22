@@ -1,5 +1,5 @@
 ---
-status: false
+status: true
 depending-on:
   - "[[stage 1 - make UI available]]"
   - "[[stage 2 - make backend available]]"
@@ -8,6 +8,6 @@ depending-on:
 Deployment (CI/CD)-Pipeline.
 - Deployment der Webapp auf einem geeigneten Webserver
 oder Cloud-Dienst.
-- [ ] Vercel account
-- [ ] work on fixed host addresses
-	- [ ] app.use(cors.... in api.js backend)
+- [x] Vercel account
+- [x] work on fixed host addresses
+	- [x] app.use(cors.... in api.js backend)

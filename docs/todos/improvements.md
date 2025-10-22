@@ -1,5 +1,5 @@
 ---
-status: false
+status: true
 depending-on:
   - "[[stage x - final sprint]]"
 ---

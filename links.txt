@@ -1,0 +1,3 @@
+git: https://github.com/vacy/habittracker/tree/tp5-with-react (branch beachten)
+frontend: https://healthifyme-red.vercel.app/
+backend: https://healthifyme-api.vercel.app/

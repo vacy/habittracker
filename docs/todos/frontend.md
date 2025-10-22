@@ -1,5 +1,5 @@
 ---
-status: false
+status: true
 depending-on:
   - "[[stage 1 - make UI available]]"
   - "[[comments]]"
@@ -11,10 +11,10 @@ depending-on:
 - [x] Barrierefreiheit (Accessibility) für Nutzer mit Einschränkungen
 	- semantische html tags
 - [x] Schnelle Ladezeiten und Performance-Optimierung.  
-- [ ] Mobile Responsiveness, damit die App auch auf mobilen Geräten gut funktioniert
+- [x] Mobile Responsiveness, damit die App auch auf mobilen Geräten gut funktioniert
 	- mobile first
-- [ ] Seiten
-	- [ ] Startseite: login or habits
-	- [ ] streaks
-	- [ ] momentum
+- [x] Seiten
+	- [x] Startseite: login or habits
+	- [x] streaks
+	- [x] momentum
 	- [x] comments

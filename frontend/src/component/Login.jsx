@@ -12,7 +12,7 @@ const apiHost = "https://healthifyme-api.vercel.app"
 
 function Login() {
   const dispatch = useDispatch()
-
+  console.log("cookie", document.cookie)
   const login = event => {
     event.preventDefault()
     fetch(apiHost + "/login", {
@@ -37,7 +37,7 @@ function Login() {
             secure: true, // care about https
           }
           const cookies = new Cookies()
-          cookies.set("token", token, options)
+          // cookies.set("token", token, options)
           const test = cookies.get("token")
           console.log("cookie object: ", test)
           console.log("set cookie: ", cookies.get("token", true))

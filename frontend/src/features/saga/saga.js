@@ -13,14 +13,10 @@ function* fetchLoginStatus() {
   try {
     const cookies = new Cookies()
 
-    const response = yield call(
-      fetch,
-      apiHost + "/isLoggedin?token=" + cookies.get("token"),
-      {
-        method: "get",
-        // credentials: "include",
-      },
-    )
+    const response = yield call(fetch, apiHost + "/isLoggedin", {
+      method: "get",
+      credentials: "include",
+    })
     if (!response.ok) {
       throw new Error("i am not logged in")
     }
