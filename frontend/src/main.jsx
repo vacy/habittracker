@@ -9,7 +9,6 @@ import Login from "./component/Login.jsx"
 import Chat from "./component/Chat.jsx"
 import Meals from "./component/Meals.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
-
 const container = document.getElementById("root")
 
 if (container) {

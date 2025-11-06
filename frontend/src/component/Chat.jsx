@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-const apiHost = "https://healthifyme-api.vercel.app"
-// const apiHost = "http://localhost:4300"
+import APIHOST from "./../env.jsx"
 
 function Comment({ text }) {
   return (
@@ -27,7 +25,7 @@ function Chat() {
   }, [])
 
   function fetchComments() {
-    fetch(apiHost + "/comments").then(response =>
+    fetch(APIHOST + "/comments").then(response =>
       response.json().then(comments => {
         setData(comments)
         setDataIsLoaded(true)
@@ -38,7 +36,7 @@ function Chat() {
 
   const postComment = event => {
     event.preventDefault()
-    fetch(apiHost + "/comments", {
+    fetch(APIHOST + "/comments", {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -49,12 +47,8 @@ function Chat() {
       }),
     }).then(response => {
       console.log("postComment response.status: ", response.status)
-      fetchComments() // warum geht der nicht in dieses .then()
+      fetchComments()
     })
-    fetchComments()
-    fetchComments()
-    fetchComments()
-    setDataIsLoaded(false)
   }
 
   if (!dataIsLoaded) {
@@ -94,7 +88,7 @@ function Chat() {
                   id="message"
                   name="message"
                   placeholder="Deine Nachricht..."
-                  maxlength="500"
+                  maxLength="500"
                   onBlur={event => setMessage(event.target.value)}
                 />
               </Row>

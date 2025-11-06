@@ -6,6 +6,7 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchLoginStatusRequest } from "../features/saga/actionTypes"
 // import { Provider } from "react-redux"
+import APIHOST from "./../env.jsx"
 
 export default function Header() {
   const navigate = useNavigate()
@@ -29,11 +30,7 @@ export default function Header() {
     loading,
   )
   function logout() {
-    document.cookie =
-      "token=invalid; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-    dispatch(fetchLoginStatusRequest())
-    const apiHost = "https://healthifyme-api.vercel.app"
-    fetch(apiHost + "/logout")
+    fetch(APIHOST + "/logout")
       .then(response => response.text())
       .then(response => console.log("logout response"))
   }

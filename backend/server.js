@@ -125,8 +125,10 @@ app.post("/login", (req, res) => {
   let options = {
     maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
     httpOnly: true, // Cookie will not be exposed to client side code
-    sameSite: "None", // If client and server origins are different
+    sameSite: "Lax", // If client and server origins are different
     secure: true, // care about https
+    path: "/",
+    domain: "localhost",
   };
 
   let token;
@@ -142,13 +144,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  let options = {
-    maxAge: 0, // expire after 10 hours
-    httpOnly: true, // Cookie will not be exposed to client side code
-    sameSite: "None", // If client and server origins are different
-    secure: true, // care about https
-  };
-  res.cookie("token", "invalid", options);
+  res.clearCookie("token");
   res.status(200).send();
 });
 
@@ -168,8 +164,8 @@ app.post("/comments", (req, res) => {
     res.status(413).send("Payload too large");
   }
 
-  let response = habitmanager.newComment(req.body.text);
-  res.status(201);
+  let response = habitmanager.newComment(comment);
+  res.status(201).send("received comment");
 });
 
 app.get("/time", (req, res) => {
