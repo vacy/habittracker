@@ -125,10 +125,9 @@ app.post("/login", (req, res) => {
   let options = {
     maxAge: 1000 * 60 * 60 * 10, // expire after 10 hours
     httpOnly: true, // Cookie will not be exposed to client side code
-    sameSite: "Lax", // If client and server origins are different
+    sameSite: "None", // If client and server origins are different
     secure: true, // care about https
     path: "/",
-    domain: "localhost",
   };
 
   let token;
