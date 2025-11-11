@@ -30,7 +30,7 @@ export default function Header() {
     loading,
   )
   function logout() {
-    fetch(APIHOST + "/logout")
+    fetch(APIHOST + "/logout", { method: "get", credentials: "include" })
       .then(response => response.text())
       .then(response => console.log("logout response"))
   }
